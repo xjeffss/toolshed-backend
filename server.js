@@ -2,12 +2,12 @@ require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
 const app = express();
-const routes = require('./routes');
-const constants = require('./constants');
+// const routes = require('./routes');
+// const constants = require('./constants');
 
 const corsOptions = {
     origin: ['http://localhost:3000'],

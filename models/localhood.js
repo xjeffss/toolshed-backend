@@ -1,0 +1,24 @@
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class LocalHood extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  };
+  LocalHood.init({
+    neighborhoodId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'LocalHood',
+  });
+  return LocalHood;
+};
