@@ -20,11 +20,12 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json());
 
 // app.use('/auth', routes.auth);
-// app.use('/city', routes.city);
+app.use('/:neighborhood', routes.neighborhood);
 // app.use('/post/all', routes.post);
 // app.use('/post/city', routes.post);
 // app.use('/auth/verify', verifyToken, routes.auth);
 // app.use('/user', verifyToken, routes.user);
+app.use('/user', routes.user);
 // app.use('/post', verifyToken, routes.post);
 
 app.listen(process.env.PORT, () => {

@@ -9,12 +9,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       toolName: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       toolBrand: {
         type: Sequelize.STRING
       },
       category: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       details: {
