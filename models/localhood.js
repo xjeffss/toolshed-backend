@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      LocalHood.hasMany(models.Tool, { foreignKey: "toolId" });
+      LocalHood.hasMany(models.User, { foreignKey: "userId" });
     }
   };
   LocalHood.init({
