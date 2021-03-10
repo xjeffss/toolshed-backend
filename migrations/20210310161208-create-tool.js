@@ -26,6 +26,9 @@ module.exports = {
       lentTo: {
         type: Sequelize.STRING
       },
+      userId: {
+        type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         defaultValue: new Date(),

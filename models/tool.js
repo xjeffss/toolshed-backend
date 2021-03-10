@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Tool.belongsTo(models.User, { foreignKey: "userId" });
-      Tool.belongsToMany(models.LocalHood, { foreignKey: "toolId" });
+      Tool.belongsTo(models.LocalHood, { foreignKey: "toolId" });
     }
   };
   Tool.init({
@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     category: DataTypes.STRING,
     details: DataTypes.STRING,
     lent: DataTypes.BOOLEAN,
-    lentTo: DataTypes.STRING
+    lentTo: DataTypes.STRING,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Tool',

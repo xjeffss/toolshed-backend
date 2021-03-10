@@ -12,11 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       LocalHood.hasMany(models.Tool, { foreignKey: "toolId" });
       LocalHood.hasMany(models.User, { foreignKey: "userId" });
+      LocalHood.belongsTo(models.Neighborhood, { foreignKey: "id" });
     }
   };
   LocalHood.init({
     neighborhoodId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    toolId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'LocalHood',
