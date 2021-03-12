@@ -44,11 +44,11 @@ const editProfile = (req, res) => {
         User.findByPk(req.user.id, {
             include: [
                 {
-                    model: City,
-                    attributes: ['id', 'name', 'state', 'img', 'country']
+                    model: User,
+                    attributes: ['id', 'firstName', ]
                 }
             ],
-            attributes: ['id', 'name', 'username', 'img', 'createdAt', 'email']
+            attributes: ['id', 'firstName', 'username', 'createdAt', 'email']
         })
         .then(userProfile => {
             res.status(constants.SUCCESS).json(userProfile)
