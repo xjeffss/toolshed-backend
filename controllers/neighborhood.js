@@ -1,12 +1,12 @@
 // const Post = require('../models').Post;
-const City = require('../models').neighborhood;
+const Neighborhood = require('../models').neighborhood;
 
 const constants = require('../constants');
 
 const getAll = (req, res) => {
-    City.findAll()
-    .then(cities => {
-        res.status(constants.SUCCESS).json(cities)
+    Neighborhood.findAll()
+    .then(neighborhoods => {
+        res.status(constants.SUCCESS).json(neighborhoods)
     })
     .catch(err => {
         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
@@ -18,7 +18,7 @@ const getLocalhoodById = (req, res) => {
     if(req.query.sorted === 'asc')
         sort = 'ASC';
     
-    City.findByPk(req.params.city, {
+    Neighborhood.findByPk(req.params.neighborhood, {
         include: [
             {
                 model: Post,
@@ -30,11 +30,11 @@ const getLocalhoodById = (req, res) => {
             [{model: Post}, 'createdAt', sort]
         ]
     })
-    .then(foundCity => {
-        if(foundCity === null){
-            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect City Id')
+    .then(foundNeighborhood => {
+        if(foundNeighborhood === null){
+            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Neighborhood Id')
         }else{
-            res.status(constants.SUCCESS).json(foundCity)
+            res.status(constants.SUCCESS).json(foundNeighborhood)
         }
     })
     .catch(err => {
