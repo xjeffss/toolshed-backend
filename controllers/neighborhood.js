@@ -1,8 +1,18 @@
+require('dotenv').config();
 // const Post = require('../models').Post;
-const Neighborhood = require('../models').neighborhood;
+const User = require('../models').User;
+const Tool = require('../models').Tool;
+const Neighborhood = require('../models').Neighborhood;
 
 const constants = require('../constants');
 
+const addHood = (req, res) => {
+    console.log(req.body)
+        Neighborhood.create(req.body)
+            .then(newHood => {
+                res.send(newHood);
+            })
+        }
 const getAll = (req, res) => {
     Neighborhood.findAll()
     .then(neighborhoods => {
@@ -43,6 +53,7 @@ const getLocalhoodById = (req, res) => {
 }
 
 module.exports = {
+    addHood,
     getAll,
     getLocalhoodById
 }

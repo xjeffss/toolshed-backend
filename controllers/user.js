@@ -1,8 +1,25 @@
+require('dotenv').config();
+
 const User = require('../models').User;
+const Tool = require('../models').Tool;
 const Neighborhood = require('../models').Neighborhood;
 // const Post = require('../models').Post;
 
 const constants = require('../constants');
+
+const addTool = (req, res) => {
+    console.log(req.body)
+            Tool.create(req.body)
+            //     {
+            //     where: {
+            //         userId: req.userId
+            //     },
+            //     returning: true
+            // })
+            .then(newTool => {
+                res.send(newTool);
+            })
+}
 
 const getProfile = (req, res) => {
     let sort = 'DESC';
@@ -60,6 +77,7 @@ const editProfile = (req, res) => {
 }
 
 module.exports = {
+    addTool,
     getProfile,
     editProfile
 }
