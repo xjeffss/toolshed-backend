@@ -20,6 +20,27 @@ const addTool = (req, res) => {
                 res.send(newTool);
             })
 }
+const getTool = (req, res) => {   
+    console.log(req.body)
+    Tool.findByPk(req.params.id, {
+        where:
+        {userId: req.params.id},
+        include: [
+            {
+                model: Tool,
+                attributes: ['id', 'toolName', 'userId']
+            }
+        ],
+        attributes: ['id', 'firstName', 'username',  'createdAt', 'email'],
+
+    })
+    .then(userTool => {
+        res.send(userTool)
+    })
+    // .catch(err => {
+    //     res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    // })
+}
 
 const getProfile = (req, res) => {
     let sort = 'DESC';
@@ -78,6 +99,7 @@ const editProfile = (req, res) => {
 
 module.exports = {
     addTool,
+    getTool,
     getProfile,
     editProfile
 }
