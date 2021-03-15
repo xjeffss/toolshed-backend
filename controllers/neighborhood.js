@@ -3,6 +3,7 @@ require('dotenv').config();
 const User = require('../models').User;
 const Tool = require('../models').Tool;
 const Neighborhood = require('../models').Neighborhood;
+const LocalHood = require ('../models').LocalHood;
 
 const constants = require('../constants');
 
@@ -11,6 +12,14 @@ const addHood = (req, res) => {
         Neighborhood.create(req.body)
             .then(newHood => {
                 res.send(newHood);
+            })
+        }
+
+const joinHood = (req, res) => {
+    console.log(req.body)
+        LocalHood.create(req.body)
+            .then(joinHood => {
+                res.send(joinHood);
             })
         }
 const getAll = (req, res) => {
@@ -53,6 +62,7 @@ const getLocalhoodById = (req, res) => {
 }
 
 module.exports = {
+    joinHood,
     addHood,
     getAll,
     getLocalhoodById

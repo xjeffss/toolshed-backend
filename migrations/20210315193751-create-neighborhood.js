@@ -9,10 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       neigorhoodName: {
+        allowNull: false,
         unique:true,
         type: Sequelize.STRING
       },
       neighborhoodPasscode: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

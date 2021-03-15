@@ -21,6 +21,8 @@ app.use(bodyParser.json());
 
 app.use('/auth', routes.auth);
 app.use('/neighborhood', routes.neighborhood);
+app.use('/neighborhood/joinhood', routes.neighborhood);
+
 // app.use('/post/all', routes.post);
 // app.use('/post/city', routes.post);
 app.use('/auth/signup', routes.auth);
