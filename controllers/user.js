@@ -21,17 +21,17 @@ const addTool = (req, res) => {
             })
 }
 const getTool = (req, res) => {   
-    console.log(req.body)
-    Tool.findByPk(req.params.id, {
+    console.log(req.body.id)
+    Tool.findAll( {
         where:
-        {userId: req.params.id},
-        include: [
-            {
-                model: Tool,
-                attributes: ['id', 'toolName', 'userId']
-            }
-        ],
-        attributes: ['id', 'firstName', 'username',  'createdAt', 'email'],
+        {userId: req.body.id},
+        // include: [
+        //     {
+        //         model: Tool,
+        //         attributes: ['id', 'toolName', 'userId']
+        //     }
+        // ],
+        // attributes: ['id', 'firstName', 'username',  'createdAt', 'email'],
 
     })
     .then(userTool => {

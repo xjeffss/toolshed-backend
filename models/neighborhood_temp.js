@@ -14,8 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Neighborhood.init({
-    neigorhoodName: DataTypes.STRING,
-    neighborhoodPasscode: DataTypes.STRING
+    neighborhoodName: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Neighborhood',
