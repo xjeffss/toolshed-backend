@@ -8,11 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      neigorhoodName: {
+      neighborhoodName: {
         allowNull: false,
         unique:true,
         type: Sequelize.STRING
       },
+      
       neighborhoodPasscode: {
         allowNull: false,
         type: Sequelize.STRING

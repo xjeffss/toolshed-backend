@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
   LocalHood.init({
     neighborhoodId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
-    toolId: DataTypes.INTEGER
+    toolId: DataTypes.INTEGER,
+    NeighborhoodId: DataTypes.INTEGER
+    
   }, {
     sequelize,
     modelName: 'LocalHood',

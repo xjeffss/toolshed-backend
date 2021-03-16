@@ -24,7 +24,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+      NeighborhoodId: {
+        type: Sequelize.INTEGER
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

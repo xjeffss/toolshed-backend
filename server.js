@@ -30,6 +30,7 @@ app.use('/auth/signup', routes.auth);
 app.use('/user', routes.user);
 app.use('/user/addtool', routes.user);
 app.use('/user/gettools', routes.user);
+app.use('/user/gethood', routes.user);
 // app.use('/post', verifyToken, routes.post);
 
 app.listen(process.env.PORT, () => {

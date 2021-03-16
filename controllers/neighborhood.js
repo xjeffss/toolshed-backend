@@ -17,11 +17,29 @@ const addHood = (req, res) => {
 
 const joinHood = (req, res) => {
     console.log(req.body)
-        LocalHood.create(req.body)
-            .then(joinHood => {
-                res.send(joinHood);
-            })
+    Neighborhood.findAll({
+        where: {
+            neighborhoodName: req.body.neighborhoodName
         }
+    })
+        .then( 
+            foundHood => {console.log(foundHood[0])
+            if(req.body.neighborhoodPasscode==foundHood[0].dataValues.neighborhoodPasscode)
+                    LocalHood.create({
+                        neighborhoodId:foundHood[0].dataValues.id,
+                        userId: req.body.userId
+                    })
+            .then(joinHood => {
+                res.status(constants.SUCCESS).json(joinHood)
+                
+            })
+        
+        }
+
+        )
+
+        }
+
 const getAll = (req, res) => {
     Neighborhood.findAll()
     .then(neighborhoods => {
@@ -32,38 +50,11 @@ const getAll = (req, res) => {
     })
 }
 
-const getLocalhoodById = (req, res) => {
-    let sort = 'DESC';
-    if(req.query.sorted === 'asc')
-        sort = 'ASC';
-    
-    Neighborhood.findByPk(req.params.neighborhood, {
-        include: [
-            {
-                model: Post,
-                attributes: ['id', 'title', 'body', 'img'],
-                
-            }
-        ],
-        order: [
-            [{model: Post}, 'createdAt', sort]
-        ]
-    })
-    .then(foundNeighborhood => {
-        if(foundNeighborhood === null){
-            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Neighborhood Id')
-        }else{
-            res.status(constants.SUCCESS).json(foundNeighborhood)
-        }
-    })
-    .catch(err => {
-        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-    })
-}
+
 
 module.exports = {
     joinHood,
     addHood,
     getAll,
-    getLocalhoodById
+ 
 }
