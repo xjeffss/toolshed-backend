@@ -45,7 +45,7 @@ app.use('/auth/signup', routes.auth);
 // app.use('/user', verifyToken, routes.user);
 app.use('/user', verifyToken,routes.user);
 app.use('/user/addtool', verifyToken, routes.user);
-app.use('/user/gettools', verifyToken, routes.user);
+app.use('/user/gettools', routes.user);
 app.use('/user/gethood', verifyToken, routes.user);
 // app.use('/post', verifyToken, routes.post);
 
