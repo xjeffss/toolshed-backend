@@ -13,11 +13,17 @@ module.exports = (sequelize, DataTypes) => {
       // LocalHood.hasMany(models.Tool, { foreignKey: "toolId" });
       // LocalHood.hasMany(models.User, { foreignKey: "userId" });
       LocalHood.belongsTo(models.Neighborhood, { 
-        through: "Neighborhood",
+        through: "LocalHood",
         foreignKey: "neighborhoodId",
         otherKey: "userId",
-        otherKey: "toolId" });
-    }
+        otherKey: "toolId" })
+      LocalHood.hasMany(models.Tool,{
+        foreignKey: "userId",
+        otherKey: "toolId"
+      }
+        )
+    } 
+
   };
   LocalHood.init({
     neighborhoodId: DataTypes.INTEGER,

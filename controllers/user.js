@@ -111,12 +111,9 @@ const getLocalhoodById = (req, res) => {
             {
                 model: Neighborhood,
                 attributes: ['id', 'neighborhoodName'],
-                
-            }
+            },
         ],
-        // order: [
-        //     [{model: Post}, 'createdAt', sort]
-        // ]
+
     })
     .then(foundNeighborhood => {console.log(foundNeighborhood)
         // if(foundNeighborhood === null){

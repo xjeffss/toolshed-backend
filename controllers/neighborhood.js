@@ -30,18 +30,13 @@ const joinHood = (req, res) => {
                         userId: req.body.userId
                     })
             .then(joinHood => {
-                res.status(constants.SUCCESS).json(joinHood)
-                
+                res.status(constants.SUCCESS).json(joinHood)        
             })
-        
-        }
-
-        )
-
+        })
         }
 
 const getAll = (req, res) => {
-    Neighborhood.findAll()
+    Neighborhood.findAll
     .then(neighborhoods => {
         res.status(constants.SUCCESS).json(neighborhoods)
     })
@@ -50,11 +45,40 @@ const getAll = (req, res) => {
     })
 }
 
-
+const getLocalToolsById = (req, res) => {
+    console.log(req.params.neighborhood)
+    LocalHood.findAll({
+        where: {
+            neighborhoodId: req.params.neighborhood
+        },
+        include: [
+            {
+                model: Neighborhood,
+                attributes: [ 'id', 'neighborhoodName']
+            },
+            // {
+            //     model: Tool,
+            //     attributes: ['id', 'userId', 'toolName'], 
+            // }
+        ]
+    })
+    .then(foundLocalTools => {console.log("local tools 2")
+        // if(foundNeighborhood === null){
+        //     res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Neighborhood Id')
+        // }else
+        {
+            res.status(constants.SUCCESS).json(foundLocalTools)
+        }
+    })
+    .catch(err => {
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
 
 module.exports = {
     joinHood,
     addHood,
     getAll,
+    getLocalToolsById
  
 }

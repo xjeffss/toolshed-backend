@@ -11,7 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Tool.belongsTo(models.User, { foreignKey: "userId" });
+      // Tool.belongsTo(models.LocalHood, {
+      //   through: "Neighborhood",
+      //   foreignKey: "toolId"
+      // })
       Tool.hasMany(models.LocalHood, { foreignKey: "toolId" });
+      Tool.belongsToMany(models.Neighborhood,{
+        through: "LocalHood",
+        foreignKey: "toolId",
+        otherKey: "neighborhoodId",
+        otherKey:"userId"} )
+
     }
   };
   Tool.init({

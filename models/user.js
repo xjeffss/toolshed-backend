@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const neighborhood = require('./neighborhood');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -13,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Tool, { foreignKey: "userId" });
       User.belongsToMany(models.Neighborhood, { 
         through: "LocalHood",
-        foreignKey: "userId" });
+        foreignKey: "userId",
+        otherKey: "neighborhoodId" });
     }
   };
   User.init({

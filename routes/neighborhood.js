@@ -5,5 +5,5 @@ const ctrl = require('../controllers');
 // router.get('/all', ctrl.city.getAll);
 router.post('/addhood', ctrl.neighborhood.addHood)
 router.post('/joinhood', ctrl.neighborhood.joinHood)
-// router.get('/:neighborhood', ctrl.neighborhood.getLocalhoodById);
+router.get('/:neighborhood', ctrl.neighborhood.getLocalToolsById);
 module.exports = router;
