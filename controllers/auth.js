@@ -21,25 +21,25 @@ const signup = (req, res) => {
             User.create(req.body)
             .then(newUser => {
                 res.send(newUser);
-    //             const token = jwt.sign(
-                    // {
-                    //     username: newUser.username,
-                    //     id: newUser.id
-                    // },
-    //                 process.env.JWT_SECRET,
-    //                 {
-    //                     expiresIn: "30 days"
-    //                 }
-    //             )
+                const token = jwt.sign(
+                    {
+                        username: newUser.username,
+                        id: newUser.id
+                    },
+                    process.env.JWT_SECRET,
+                    {
+                        expiresIn: "30 days"
+                    }
+                )
 
-    //             res.status(constants.SUCCESS).json({
-    //                 "token" : token,
-    //                 "user": newUser
-    //             });
+                res.status(constants.SUCCESS).json({
+                    "token" : token,
+                    "user": newUser
+                });
             })
             .catch(err => {
                 console.log(err)
-                // res.status(constants.BAD_REQUEST).send(`ERROR: ${err}`);
+                res.status(constants.BAD_REQUEST).send(`ERROR: ${err}`);
             }
             )
     //     })
@@ -58,25 +58,25 @@ const login = (req, res) => {
     .then(foundUser => {
         if(req.body.password===foundUser.password){
          
-        //    compare(req.body.password, foundUser.password, (err, match) => {
+        //    bcrypt.compare(req.body.password, foundUser.password, (err, match) => {
+        //        console.log(match)
         //         if(match){
-        //             res.send(match);
-                    res.send(foundUser)
-                    // const token = jwt.sign(
-                    //     {
-                    //         username: foundUser.username,
-                    //         password: foundUser.password,
-                    //         id: foundUser.id
-                    //     },
-                    //     process.env.JWT_SECRET,
-                    //     {
-                    //         expiresIn: "30 days"
-                    //     }
-                    // )
-                    // res.status(constants.SUCCESS).json({
-                    //     "token" : token,
-                    //     "user": foundUser
-                    // });
+console.log(foundUser.id)
+                    const token = jwt.sign(
+                        {
+                            username: foundUser.username,
+                            id: foundUser.id
+                        },
+                        process.env.JWT_SECRET,
+                        {
+                            expiresIn: "30 days"
+                        }
+                    )
+                    res.status(constants.SUCCESS).json({
+                        "token" : token,
+                        "user": foundUser,
+
+                    });
                 // } 
                 // else {
                 //     res.status(constants.BAD_REQUEST).send(`ERROR: Incorrect Username/Password`);
@@ -85,7 +85,7 @@ const login = (req, res) => {
         }
         else{
             res.status(constants.BAD_REQUEST).send(`ERROR: Incorrect Username/Password`);
-        }
+        } console.log("boink")
     })
     .catch(err => {
         console.log(err)
@@ -94,8 +94,9 @@ const login = (req, res) => {
 }
 
 const verifyUser = (req, res) => {
+    console.log("token")
     User.findByPk(req.user.id, {
-        attributes: ['id', 'firstName', 'lastName', 'username', 'email', ]
+        attributes: ['id', 'firstName', 'lastName', 'username', 'email' ]
     })
     .then(foundUser => {
         res.status(constants.SUCCESS).json(foundUser);

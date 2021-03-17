@@ -23,14 +23,30 @@ app.use('/auth', routes.auth);
 app.use('/neighborhood', routes.neighborhood);
 app.use('/neighborhood/joinhood', routes.neighborhood);
 
+const verifyToken = (req, res, next) => {
+    let token = req.headers['authorization'];
+    if(token){
+        token = token.substring(constants.BEARER_START_INDEX) //remove string Bearer from the token
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
+        if(err || !decodedUser){
+            return res.status(constants.UNAUTHORIZED).send(`ERROR: ${err}`);
+        }
+        req.user = decodedUser;//set the decoded payload to req object as the user information(username, id)
+
+        next();// for control to go to the next line of code
+    })
+}
+
 // app.use('/post/all', routes.post);
 // app.use('/post/city', routes.post);
 app.use('/auth/signup', routes.auth);
 // app.use('/user', verifyToken, routes.user);
-app.use('/user', routes.user);
-app.use('/user/addtool', routes.user);
-app.use('/user/gettools', routes.user);
-app.use('/user/gethood', routes.user);
+app.use('/user', verifyToken,routes.user);
+app.use('/user/addtool', verifyToken, routes.user);
+app.use('/user/gettools', verifyToken, routes.user);
+app.use('/user/gethood', verifyToken, routes.user);
 // app.use('/post', verifyToken, routes.post);
 
 app.listen(process.env.PORT, () => {

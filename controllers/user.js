@@ -23,7 +23,7 @@ const addTool = (req, res) => {
             })
 }
 const getTool = (req, res) => {   
-    console.log(req.body.id)
+    console.log("what's up")
     Tool.findAll( {
         where:
         {userId: req.body.id},
