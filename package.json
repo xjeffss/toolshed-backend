@@ -12,7 +12,8 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.1",
     "routes": "^2.1.0",
-    "sequelize": "^6.5.0"
+    "sequelize": "^6.5.0",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {},
   "scripts": {
