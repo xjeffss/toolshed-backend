@@ -44,11 +44,10 @@ const verifyToken = (req, res, next) => {
 // app.use('/post/city', routes.post);
 app.use('/auth/signup', routes.auth);
 // app.use('/user', verifyToken, routes.user);
-app.use('/user', routes.user);
-app.use('/user/addtool',  routes.user);
+app.use('/user', verifyToken,routes.user);
+app.use('/user/addtool', verifyToken, routes.user);
 app.use('/user/gettools', routes.user);
-app.use('/user/gethood',  routes.user);
-app.use('/user/deletetool',  routes.user);
+app.use('/user/gethood', verifyToken, routes.user);
 // app.use('/post', verifyToken, routes.post);
 
 app.listen(process.env.PORT, () => {

@@ -23,7 +23,7 @@ const addTool = (req, res) => {
             })
 }
 const getTool = (req, res) => {   
-    console.log("what's up")
+    console.log("gettool")
     Tool.findAll( {
         where:
         {userId: req.body.id},
@@ -72,7 +72,19 @@ const getProfile = (req, res) => {
         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
     })
 }
-
+const deleteTool = (req, res) => {
+    console.log(req.body.toolId)
+    Tool.findByPk(req.body.toolId)
+    .then(foundTool => {
+        if(foundTool.id === req.body.toolId){
+            Tool.destroy({
+                where: {
+                    id:req.body.toolId
+                }
+            })
+        }
+    })
+        }
 const editProfile = (req, res) => {
     User.update(req.body, {
         where: {
@@ -129,6 +141,7 @@ const getLocalhoodById = (req, res) => {
 }
 module.exports = {
     addTool,
+    deleteTool,
     getTool,
     getProfile,
     editProfile,

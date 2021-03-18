@@ -21,25 +21,25 @@ const signup = (req, res) => {
             User.create(req.body)
             .then(newUser => {
                 res.send(newUser);
-            //     const token = jwt.sign(
-            //         {
-            //             username: newUser.username,
-            //             id: newUser.id
-            //         },
-            //         process.env.JWT_SECRET,
-            //         {
-            //             expiresIn: "30 days"
-            //         }
-            //     )
+                const token = jwt.sign(
+                    {
+                        username: newUser.username,
+                        id: newUser.id
+                    },
+                    process.env.JWT_SECRET,
+                    {
+                        expiresIn: "30 days"
+                    }
+                )
 
-            //     res.status(constants.SUCCESS).json({
-            //         "token" : token,
-            //         "user": newUser
-            //     });
-            // })
-            // .catch(err => {
-            //     console.log(err)
-            //     res.status(constants.BAD_REQUEST).send(`ERROR: ${err}`);
+                res.status(constants.SUCCESS).json({
+                    "token" : token,
+                    "user": newUser
+                });
+            })
+            .catch(err => {
+                console.log(err)
+                res.status(constants.BAD_REQUEST).send(`ERROR: ${err}`);
             }
             )
     //     })
@@ -57,26 +57,26 @@ const login = (req, res) => {
     })
     .then(foundUser => {
         if(req.body.password===foundUser.password){
-            res.send(foundUser)
+         
         //    bcrypt.compare(req.body.password, foundUser.password, (err, match) => {
         //        console.log(match)
         //         if(match){
 console.log(foundUser.id)
-                    // const token = jwt.sign(
-                    //     {
-                    //         username: foundUser.username,
-                    //         id: foundUser.id
-                    //     },
-                    //     process.env.JWT_SECRET,
-                    //     {
-                    //         expiresIn: "30 days"
-                    //     }
-                    // )
-                    // res.status(constants.SUCCESS).json({
-                    //     "token" : token,
-                    //     "user": foundUser,
+                    const token = jwt.sign(
+                        {
+                            username: foundUser.username,
+                            id: foundUser.id
+                        },
+                        process.env.JWT_SECRET,
+                        {
+                            expiresIn: "30 days"
+                        }
+                    )
+                    res.status(constants.SUCCESS).json({
+                        "token" : token,
+                        "user": foundUser,
 
-                    // });
+                    });
                 // } 
                 // else {
                 //     res.status(constants.BAD_REQUEST).send(`ERROR: Incorrect Username/Password`);
