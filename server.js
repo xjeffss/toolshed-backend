@@ -42,12 +42,16 @@ const verifyToken = (req, res, next) => {
 
 // app.use('/post/all', routes.post);
 // app.use('/post/city', routes.post);
-app.use('/auth/signup', routes.auth);
+app.use('/auth', routes.auth);
+
 // app.use('/user', verifyToken, routes.user);
 app.use('/user', routes.user);
 app.use('/user/addtool',  routes.user);
 app.use('/user/gettools', routes.user);
 app.use('/user/gethood',  routes.user);
+app.use('/neighborhood', routes.neighborhood);
+
+
 app.use('/user/deletetool',  routes.user);
 // app.use('/post', verifyToken, routes.post);
 

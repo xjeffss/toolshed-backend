@@ -34,9 +34,23 @@ const joinHood = (req, res) => {
             })
         })
         }
+const leaveHood = (req, res) => {
+    console.log(req.body)
+    LocalHood.findAll(req.body.neighborhoodId)
+    .then(
+            LocalHood.destroy({
+                where: {
+                    neighborhoodId:req.body.neighborhoodId,
+                    userId:req.body.userId
+                }
+            })
+        
+    )
+    }
+        
 
 const getAll = (req, res) => {
-    Neighborhood.findAll
+    Neighborhood.findAll()
     .then(neighborhoods => {
         res.status(constants.SUCCESS).json(neighborhoods)
     })
@@ -79,6 +93,6 @@ module.exports = {
     joinHood,
     addHood,
     getAll,
-    getLocalToolsById
- 
+    getLocalToolsById,
+    leaveHood
 }

@@ -85,31 +85,7 @@ const deleteTool = (req, res) => {
         }
     })
         }
-const editProfile = (req, res) => {
-    User.update(req.body, {
-        where: {
-            id: req.user.id
-        },
-        returning: true
-    })
-    .then(() => {
-        User.findByPk(req.user.id, {
-            include: [
-                {
-                    model: User,
-                    attributes: ['id', 'firstName', ]
-                }
-            ],
-            attributes: ['id', 'firstName', 'username', 'createdAt', 'email']
-        })
-        .then(userProfile => {
-            res.status(constants.SUCCESS).json(userProfile)
-        })
-    })
-    .catch(err => {
-        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-    })
-}
+
 const getLocalhoodById = (req, res) => {
     console.log("local hood")
     let sort = 'DESC';
@@ -144,6 +120,6 @@ module.exports = {
     deleteTool,
     getTool,
     getProfile,
-    editProfile,
+
     getLocalhoodById
 }
