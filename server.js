@@ -10,13 +10,20 @@ const routes = require('./routes');
 const constants = require('./constants');
 
 const corsOptions = {
-    origin: ['http://localhost:3000'],//<- frontend
-    // origin: ['http://toolshed.surge.sh']link to Surge App
+    // origin: ['http://localhost:3000'],//<- frontend
+    origin: ['http://toolshed.surge.sh'],
     methods: "GET,POST,PUT,DELETE",
     credentials: true, //allows session cookies to be sent back and forth
     optionsSuccessStatus: 200 //legacy browsers
   }
-
+  app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://toolshed.surge.sh");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  })
 app.use(cors(corsOptions))
 app.use(bodyParser.json());
 
