@@ -16,14 +16,7 @@ const corsOptions = {
     credentials: true, //allows session cookies to be sent back and forth
     optionsSuccessStatus: 200 //legacy browsers
   }
-  app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://toolshed.surge.sh");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  })
+
 app.use(cors(corsOptions))
 app.use(bodyParser.json());
 
@@ -31,21 +24,29 @@ app.use('/auth', routes.auth);
 app.use('/neighborhood', routes.neighborhood);
 app.use('/neighborhood/joinhood', routes.neighborhood);
 
-const verifyToken = (req, res, next) => {
-    let token = req.headers['authorization'];
-    if(token){
-        token = token.substring(constants.BEARER_START_INDEX) //remove string Bearer from the token
-    }
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://toolshed.surge.sh");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  })
+// const verifyToken = (req, res, next) => {
+//     let token = req.headers['authorization'];
+//     if(token){
+//         token = token.substring(constants.BEARER_START_INDEX) //remove string Bearer from the token
+//     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
-        if(err || !decodedUser){
-            return res.status(constants.UNAUTHORIZED).send(`ERROR: ${err}`);
-        }
-        req.user = decodedUser;//set the decoded payload to req object as the user information(username, id)
+//     jwt.verify(token, process.env.JWT_SECRET, (err, decodedUser) => {
+//         if(err || !decodedUser){
+//             return res.status(constants.UNAUTHORIZED).send(`ERROR: ${err}`);
+//         }
+//         req.user = decodedUser;//set the decoded payload to req object as the user information(username, id)
 
-        next();// for control to go to the next line of code
-    })
-}
+//         next();// for control to go to the next line of code
+//     })
+// }
 
 // app.use('/post/all', routes.post);
 // app.use('/post/city', routes.post);
