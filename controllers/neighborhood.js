@@ -11,7 +11,7 @@ const addHood = (req, res) => {
     console.log(req.body)
         Neighborhood.create(req.body)
             .then(newHood => {
-                res.send(newHood);
+                res.status(constants.SUCCESS).json(newHood);
             })
         }
 

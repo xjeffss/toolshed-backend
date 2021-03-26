@@ -82,6 +82,8 @@ const deleteTool = (req, res) => {
                     id:req.body.toolId
                 }
             })
+        } else {
+            res.status(constants.BAD_REQUEST).send(`ERROR: Tool not found`);
         }
     })
         }

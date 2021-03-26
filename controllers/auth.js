@@ -20,7 +20,7 @@ const signup = (req, res) => {
 
             User.create(req.body)
             .then(newUser => {
-                res.send(newUser);
+                res.status(constants.SUCCESS).json(newUser);
             //     const token = jwt.sign(
             //         {
             //             username: newUser.username,
@@ -57,11 +57,11 @@ const login = (req, res) => {
     })
     .then(foundUser => {
         if(req.body.password===foundUser.password){
-            res.send(foundUser)
+            res.status(constants.SUCCESS).json(foundUser)
         //    bcrypt.compare(req.body.password, foundUser.password, (err, match) => {
         //        console.log(match)
         //         if(match){
-console.log(foundUser.id)
+        console.log(foundUser.id)
                     // const token = jwt.sign(
                     //     {
                     //         username: foundUser.username,
