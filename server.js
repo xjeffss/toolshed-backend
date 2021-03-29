@@ -10,8 +10,8 @@ const routes = require('./routes');
 const constants = require('./constants');
 
 const corsOptions = {
-    // origin: ['http://localhost:3000'],//<- frontend
-    origin: ['http://toolshed.surge.sh'],
+    origin: ['http://localhost:3000'],//<- frontend
+    // origin: ['http://toolshed.surge.sh'],
     methods: "GET,POST,PUT,DELETE",
     credentials: true, //allows session cookies to be sent back and forth
     optionsSuccessStatus: 200 //legacy browsers
@@ -24,14 +24,14 @@ app.use('/auth', routes.auth);
 app.use('/neighborhood', routes.neighborhood);
 app.use('/neighborhood/joinhood', routes.neighborhood);
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://toolshed.surge.sh");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  })
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "http://toolshed.surge.sh");
+//     res.header(
+//       "Access-Control-Allow-Headers",
+//       "Origin, X-Requested-With, Content-Type, Accept"
+//     );
+//     next();
+//   })
 // const verifyToken = (req, res, next) => {
 //     let token = req.headers['authorization'];
 //     if(token){

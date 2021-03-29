@@ -36,7 +36,7 @@ const joinHood = (req, res) => {
         }
 const leaveHood = (req, res) => {
     console.log(req.body)
-    LocalHood.findAll(req.body.neighborhoodId)
+    LocalHood.findByPk(req.body.neighborhoodId)
     .then(
             LocalHood.destroy({
                 where: {
@@ -68,7 +68,7 @@ const getLocalToolsById = (req, res) => {
         include: [
             {
                 model: Neighborhood,
-                attributes: [ 'id', 'neighborhoodName']
+                attributes: ['neighborhoodName']
             },
             // {
             //     model: Tool,

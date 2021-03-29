@@ -22,6 +22,23 @@ const addTool = (req, res) => {
                 res.send(newTool);
             })
 }
+const getUsers = (req, res) => {
+    console.log(req.body)
+    User.findAll({
+        where:
+        {
+            id: req.body.id
+        },
+        include: [
+        {
+            model: Tool,
+            attributes: ['toolName']
+        },
+    ]
+    }).then(getUser => {
+        res.status(constants.SUCCESS).json(getUser);
+    })
+}
 const getTool = (req, res) => {   
     console.log("gettool")
     Tool.findAll( {
@@ -122,6 +139,6 @@ module.exports = {
     deleteTool,
     getTool,
     getProfile,
-
+    getUsers,
     getLocalhoodById
 }
