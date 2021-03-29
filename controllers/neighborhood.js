@@ -23,12 +23,13 @@ const joinHood = (req, res) => {
         }
     })
         .then( 
-            foundHood => {console.log(foundHood[0])
+            foundHood => {console.log(req.body)
             if(req.body.neighborhoodPasscode==foundHood[0].dataValues.neighborhoodPasscode)
                     LocalHood.create({
                         neighborhoodId:foundHood[0].dataValues.id,
                         userId: req.body.userId
                     })
+             else(res.send("wrong passcode"))       
             .then(joinHood => {
                 res.status(constants.SUCCESS).json(joinHood)        
             })
