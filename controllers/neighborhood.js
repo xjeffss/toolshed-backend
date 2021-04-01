@@ -77,7 +77,7 @@ const getLocalToolsById = (req, res) => {
             // }
         ]
     })
-    .then(foundLocalTools => {console.log("local tools 2")
+    .then(foundLocalTools => {console.log(foundLocalTools[0].dataValues.userId)
         // if(foundNeighborhood === null){
         //     res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Neighborhood Id')
         // }else
