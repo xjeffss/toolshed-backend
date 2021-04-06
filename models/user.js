@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Tool, { foreignKey: "userId" });
       User.belongsToMany(models.Neighborhood,{
         through: "LocalHood",
-        foreignKey: "userId"
+        foreignKey: "userId",
+        otherKey: "neighborhoodId"
         
       })
       User.hasMany(models.LocalHood, { 
