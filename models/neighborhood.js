@@ -10,9 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Neighborhood.hasMany(models.User, { 
-        foreignKey: "id" });
-    }
+      // Neighborhood.hasMany(models.User, { 
+      //   foreignKey: "id" })
+      // Neighborhood.hasOne(models.LocalHood,{
+      //   foreignKey: "neighborhoodId"
+      // })
+    }     
   };
   Neighborhood.init({
     neighborhoodName: DataTypes.STRING,

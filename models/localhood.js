@@ -10,18 +10,19 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // LocalHood.hasMany(models.Tool, { foreignKey: "toolId" });
-      // LocalHood.hasMany(models.User, { foreignKey: "userId" });
+      LocalHood.hasMany(models.Tool, { foreignKey: "id" });
+      //^critical to tools showing up on shed page
+      
       LocalHood.belongsTo(models.Neighborhood, { 
         through: "LocalHood",
         foreignKey: "neighborhoodId",
         otherKey: "userId",
         otherKey: "toolId" })
-      LocalHood.hasMany(models.Tool,{
-        foreignKey: "userId",
-        otherKey: "toolId"
-      }
-        )
+        // ^critical to shed printing correctly
+      LocalHood.hasMany(models.User,{
+        foreignKey: "id",
+      } )
+       
     } 
 
   };

@@ -12,10 +12,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       User.hasMany(models.Tool, { foreignKey: "userId" });
-      User.belongsToMany(models.Neighborhood, { 
+      User.belongsToMany(models.Neighborhood,{
         through: "LocalHood",
+        foreignKey: "userId"
+        
+      })
+      User.hasMany(models.LocalHood, { 
         foreignKey: "userId",
-        otherKey: "neighborhoodId" });
+ });
     }
   };
   User.init({

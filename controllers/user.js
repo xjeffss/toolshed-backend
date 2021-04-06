@@ -40,20 +40,32 @@ const getUsers = (req, res) => {
     })
 }
 const getTool = (req, res) => {   
-    console.log("gettool")
+    console.log(req.body)
     Tool.findAll( {
-        where:
-        {userId: req.body.id},
-        // include: [
-        //     {
-        //         model: Tool,
-        //         attributes: ['id', 'toolName', 'userId']
-        //     }
-        // ],
+        where:{
+            userId: req.body.id
+        },
+        include: [
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            },
+            {
+                model:LocalHood,
+                attributes: ['neighborhoodId', 'userId']
+            },
+            {
+                model:Neighborhood,
+                attributes: ['id', 'neighborhoodName']
+            }
+
+        ],
         // attributes: ['id', 'firstName', 'username',  'createdAt', 'email'],
 
     })
-    .then(userTool => {
+    .then(userTool => { 
+
+
         res.send(userTool)
     })
     // .catch(err => {
