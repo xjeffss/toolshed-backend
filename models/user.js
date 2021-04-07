@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         through: "LocalHood",
         foreignKey: "userId",
         otherKey: "neighborhoodId"
-        
+        //^this fixed neighborhoodName for neighborhoodpage
       })
       User.hasMany(models.LocalHood, { 
         foreignKey: "userId",
